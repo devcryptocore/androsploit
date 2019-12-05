@@ -178,5 +178,6 @@ def very():
 			print (colors.am + "¡Debe ingresar una opción válida.!"+ colors.f)
 			time.sleep(2)
 			very()
-
+	else:
+		good()
 ini()
