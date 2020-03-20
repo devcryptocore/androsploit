@@ -15,7 +15,7 @@ Termux :
 pkg install python -y
 
 Requiere Metasploit Framework
-En caso de no tener Metasploit Framework instalado en el sistema, Androsploit puede instalarlo por usted. (Característica solo disponible para Termux)
+En caso de no tener Metasploit Framework instalado en Termux, Androsploit puede instalarlo automáticamente por usted.
 
 El script Androsploit funciona en Kali Linux y Termux.
 
