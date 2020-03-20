@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import os.path
 import time
 import sys
@@ -216,3 +219,5 @@ def termuxver():
 		
 
 ini()
+
+#By System Failure - Informàtica y Hacking © 2020
