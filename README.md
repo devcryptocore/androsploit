@@ -29,5 +29,6 @@ pip install -r requirements.txt
 
 python androsploit.py
 
+En Kali Linux: python3 androsploit.py
 
 Para mayor información visite https://informaticayhacking.com
